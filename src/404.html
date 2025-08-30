@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page Not Found — puttski.com</title>
+    <meta name="robots" content="noindex" />
+    <style>
+      :root { --text:#0a0a0a; --muted:#6b7280; --border:#e5e7eb; --brand:#111827; }
+      *{box-sizing:border-box}
+      body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#fff;color:var(--text);line-height:1.6}
+      .wrap{width:min(800px,92%);margin:0 auto;padding:80px 0 40px}
+      .card{border:1px solid var(--border);border-left:3px solid var(--brand);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.06);padding:24px}
+      h1{font-size:clamp(28px,6vw,44px);margin:0 0 8px;letter-spacing:-.02em}
+      p{margin:0 0 8px;color:var(--muted)}
+      .cta{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+      a.button{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--border);background:#fff;color:var(--text);text-decoration:none;font-weight:600}
+      a.button:hover{background:#f9fafb}
+      code{background:#f3f4f6;border:1px solid var(--border);padding:2px 6px;border-radius:6px}
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="card" aria-labelledby="nf-title">
+        <h1 id="nf-title">404 — Page Not Found</h1>
+        <p>Sorry, we couldn’t find what you’re looking for.</p>
+        <p>If you followed a link, it may be outdated or the file may have moved.</p>
+        <div class="cta">
+          <a class="button" href="/">Go to homepage</a>
+          <a class="button" href="/">Try a fresh reload</a>
+        </div>
+        <p><small>Request URL: <code id="url"></code></small></p>
+      </section>
+    </main>
+    <script>
+      document.getElementById('url').textContent = location.pathname + location.search;
+    </script>
+  </body>
+  </html>
+
