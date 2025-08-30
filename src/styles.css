@@ -90,3 +90,5 @@ body {
   .nav { display: none; }
   .cards { grid-template-columns: 1fr; }
 }
+
+/* (Removed modal styles) */

@@ -13,3 +13,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 // Current year in footer
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// (Removed modal/email form logic per request)
