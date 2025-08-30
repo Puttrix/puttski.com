@@ -1,6 +1,6 @@
 # puttski.com
 
-Personal website for Putte Arvfors — Web Analyst & Digital Troubleshooter.  
+Personal website for Putte Arvfors — Web Analyst & Digital Troublemaker.  
 Matomo‑first analytics, experimentation, tagging, and pragmatic engineering.
 
 ---
