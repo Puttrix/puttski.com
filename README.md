@@ -1,51 +1,58 @@
 # puttski.com
 
-A simple static website designed and self-hosted using GitHub Actions, Docker, and Portainer.  
-Ideal for GitOps-style workflows where updates are just a `git push` away.
+Personal website for Putte Arvfors — Web Analyst & Digital Troubleshooter.  
+Matomo‑first analytics, experimentation, tagging, and pragmatic engineering.
 
 ---
 
-##  Features
+## Features
 
-- **Containerized static site**: Powered by Nginx for efficiency and reliability.
-- **Automated CI/CD**: Builds and publishes a Docker image to GitHub Container Registry (GHCR) on every commit to `main`.
-- **Zero‑touch deployment**: Use Watchtower or Portainer with docker‑compose to auto‑pull and redeploy updates.
-- **Ready for TLS**: Easily integrates with Nginx Proxy Manager or Cloudflare Tunnel for HTTPS.
-
----
-
-##  Requirements
-
-- Docker & Docker Compose (on the host server)
-- Portainer (optional, but recommended for easy deployment)
-- A GitHub repository (`puttski.com`)
-- GHCR (GitHub Container Registry) for hosting the Docker image
-- Optionally a reverse‑proxy (Nginx Proxy Manager, Traefik, or Cloudflare Tunnel) for TLS termination
+- **Static site + Nginx**: Lightweight, containerized static site.
+- **Matomo‑first**: Content emphasizes Matomo (Analytics + Tag Manager); GA4/GTM secondary.
+- **CI/CD ready**: Built to publish Docker images to GHCR on pushes to `main`.
+- **Zero‑touch deploys**: Use Watchtower or Portainer stacks to auto‑pull updates.
+- **TLS friendly**: Works well behind Nginx Proxy Manager or Cloudflare Tunnel.
 
 ---
 
-##  Installation & Setup
+## Site Content
 
-### 1. Clone the repo
+- Hero, About, Focus, Skills, and Contact sections in `src/index.html`.
+- Uses the image in `src/img/` on the hero.
+- Links to LinkedIn and GitHub:
+  - LinkedIn: https://www.linkedin.com/in/putte/
+  - GitHub: https://github.com/Puttrix
+
+---
+
+## Quick Start
+
+Run locally with Docker:
 
 ```bash
-git clone https://github.com/Puttrix/puttski.com.git
-cd puttski.com
+docker build -t puttski.com .
+docker run --rm -p 8080:80 puttski.com
 ```
 
-### 2. Configure GitHub Actions
+Open http://localhost:8080
 
-The workflow `.github/workflows/docker.yml` will:
+---
 
-- Trigger on pushes to `main`
-- Build the Docker image (`ghcr.io/your-username/puttski.com:latest`)
-- Push it to GHCR automatically
+## Deployment
 
-Make sure `permissions.packages: write` is set, and that the GHCR package is available (public or authenticated on the server).
+You can publish a container image to GitHub Container Registry (GHCR) and run it on your server.
 
-### 3. Deploy via Portainer (or Docker Compose)
+### GitHub Actions (optional)
 
-Create a `docker-compose.yml` (or use the built‑in Portainer “Stack”) with:
+Add a workflow (e.g. `.github/workflows/docker.yml`) that:
+
+- Triggers on pushes to `main`
+- Builds the Docker image (e.g., `ghcr.io/puttrix/puttski.com:latest`)
+- Pushes to GHCR with `permissions.packages: write`
+
+### Portainer or Docker Compose
+
+Example `docker-compose.yml`:
 
 ```yaml
 version: "3.8"
@@ -64,43 +71,38 @@ services:
     command: --cleanup --interval 30
 ```
 
-If your GHCR package is private, configure registry credentials accordingly.
+If GHCR is private, configure registry credentials in Portainer or the host.
 
-### 4. Enable TLS (optional)
+### TLS (optional)
 
-- **Nginx Proxy Manager**: Point a Proxy Host (e.g. `https://puttski.com`) at `http://puttski:80` and enable Let’s Encrypt.
-- **Cloudflare Tunnel**: Forward a public hostname to the server port/container port.
-
----
-
-##  Usage Flow
-
-1. Make changes in your project (e.g., `src/index.html`, `styles.css`, `script.js`).
-2. Push commits to `main`.
-3. GitHub Actions builds and publishes the Docker image.
-4. Watchtower (or a Portainer webhook) detects the update and redeploys the container.
-5. Your site is live—updated instantly and securely.
+- Nginx Proxy Manager: Point a Proxy Host (e.g. `https://puttski.com`) at the container, enable Let’s Encrypt.
+- Cloudflare Tunnel: Forward a public hostname to the server/container port.
 
 ---
 
-##  Contributing
+## Repository Structure
 
-Contributions are welcome! Feel free to:
-
-- Enhance Docker security or add staging workflows
-- Add features (e.g., asset hashing, image optimization)
-- Improve documentation or deployment options
+```
+src/
+  index.html
+  styles.css
+  script.js
+  img/
+Dockerfile
+nginx.conf
+README.md
+```
 
 ---
 
-##  License
+## License
 
 MIT License — free to use, modify, and deploy.
 
 ---
 
-##  Author
+## Author
 
-Developed by **Putte Arvfors**
+Developed by **Putte Arvfors** — connect on LinkedIn: https://www.linkedin.com/in/putte/
 
-Happy self-hosting!
+Happy self‑hosting!
