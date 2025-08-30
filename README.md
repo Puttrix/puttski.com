@@ -17,11 +17,28 @@ Matomo‑first analytics, experimentation, tagging, and pragmatic engineering.
 
 ## Site Content
 
-- Hero, About, Focus, Skills, and Contact sections in `src/index.html`.
+- Hero, About, Focus, Skills, Certifications, and Contact sections in `src/index.html`.
+- Certifications: two‑column card layout with issuer logos and links to external credentials.
+- Logos optimized with `<picture>`: WebP 1x/2x + PNG fallback.
 - Uses the image in `src/img/` on the hero.
 - Links to LinkedIn and GitHub:
   - LinkedIn: https://www.linkedin.com/in/putte/
   - GitHub: https://github.com/Puttrix
+
+---
+
+## Assets & Performance
+
+- Images: Small WebP variants for logos (`28px`/`56px`) with PNG fallback.
+- Lazy‑loading: Logos use `loading="lazy"` + `decoding="async"` for snappier paint.
+- CSS cache busting: `styles.css?v=3` avoids stale 30‑day cache (Nginx sets `expires 30d`).
+
+---
+
+## 404 Handling
+
+- Custom error page: `src/404.html` (inline styles, no external deps).
+- Nginx configured with `error_page 404 /404.html` and no‑store caching for the error page.
 
 ---
 
@@ -85,9 +102,11 @@ If GHCR is private, configure registry credentials in Portainer or the host.
 ```
 src/
   index.html
+  404.html
   styles.css
   script.js
   img/
+    logos/
 Dockerfile
 nginx.conf
 README.md
