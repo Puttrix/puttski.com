@@ -56,10 +56,10 @@ Run locally with Docker:
 
 ```bash
 docker build -t puttski.com .
-docker run --rm -p 8080:80 puttski.com
+docker run --rm -p 8888:80 puttski.com
 ```
 
-Open http://localhost:8080
+Open http://localhost:8888
 
 ---
 
@@ -86,7 +86,7 @@ services:
     image: ghcr.io/puttrix/puttski.com:latest
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "8888:80"
 
   watchtower:
     image: containrrr/watchtower
