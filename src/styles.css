@@ -74,6 +74,16 @@ a { color: inherit; text-underline-offset: 2px; }
 .pill-list { display: flex; flex-wrap: wrap; gap: 8px; }
 .pill { background: #f3f4f6; color: var(--text); border: 1px solid var(--border); padding: 6px 10px; border-radius: 999px; font-size: 14px; }
 
+/* Certifications */
+.certs { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.cert { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px; box-shadow: var(--shadow); }
+.cert-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.cert-logo { width: 24px; height: 24px; border-radius: 6px; display: block; }
+.cert-title { margin: 0 0 2px; font-size: 16px; }
+.cert-meta { margin: 0; color: var(--muted); font-size: 14px; }
+.cert-links { margin: 6px 0 0; font-size: 14px; }
+.certs-link { margin-top: 10px; }
+
 /* Footer */
 .site-footer { border-top: 1px solid var(--border); padding: 24px 0 48px; color: var(--muted); }
 
@@ -81,8 +91,10 @@ a { color: inherit; text-underline-offset: 2px; }
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; gap: 24px; }
   .cards { grid-template-columns: repeat(2, 1fr); }
+  .certs { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
   .nav { display: none; }
   .cards { grid-template-columns: 1fr; }
+  .certs { grid-template-columns: 1fr; }
 }
