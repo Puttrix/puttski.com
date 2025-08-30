@@ -1,58 +1,64 @@
 # puttski.com
 
 Personal website for Putte Arvfors — Web Analyst & Digital Troublemaker.  
-Matomo‑first analytics, experimentation, tagging, and pragmatic engineering.
+Matomo‑first analytics, SEO/AEO/GEO, experimentation, and privacy‑first engineering.
 
 ---
 
-## Features
+## What’s Inside (Astro + Nginx)
 
-- **Static site + Nginx**: Lightweight, containerized static site.
-- **Matomo‑first**: Content emphasizes Matomo (Analytics + Tag Manager); GA4/GTM secondary.
-- **CI/CD ready**: Built to publish Docker images to GHCR on pushes to `main`.
-- **Zero‑touch deploys**: Use Watchtower or Portainer stacks to auto‑pull updates.
-- **TLS friendly**: Works well behind Nginx Proxy Manager or Cloudflare Tunnel.
+- **Astro static site**: Modern, content‑first framework generating static HTML/CSS/JS.
+- **Structured data**: JSON‑LD for `WebSite`, `WebPage`, `Person`, credentials, and breadcrumbs.
+- **Optimized assets**: WebP logos with PNG fallbacks, lazy‑loading, and tight sizing.
+- **Nginx runtime**: Serves the built site with a custom 404 and long‑cache for assets.
+- **CI/CD ready**: GitHub Actions builds and pushes a Docker image to GHCR on `main`.
+- **Tunnel/proxy friendly**: Works well behind Cloudflare Tunnel or Nginx Proxy Manager.
 
 ---
 
 ## Site Content
 
-- Hero, About, Focus, Skills, Certifications, and Contact sections in `src/index.html`.
-- Certifications: two‑column card layout with issuer logos and links to external credentials.
-- Logos optimized with `<picture>`: WebP 1x/2x + PNG fallback.
-- Uses the image in `src/img/` on the hero.
-- Links to LinkedIn and GitHub:
+- Hero, About, Focus, Skills, Certifications, and Contact (see `src/pages/index.astro`).
+- Certifications show issuer logos and link to public credentials.
+- JSON‑LD added in `src/layouts/Base.astro` (including breadcrumbs).
+- Links:
   - LinkedIn: https://www.linkedin.com/in/putte/
   - GitHub: https://github.com/Puttrix
 
 ### Positioning
 
 - Matomo‑first analytics and tagging.
-- SEO/AEO/GEO focus with structured data and answer‑engine optimization.
+- SEO/AEO/GEO with structured data and answer‑engine optimization.
 - Privacy‑first approach with GDPR/consent considerations.
 
 ---
 
-## Assets & Performance
+## Develop Locally (Astro)
 
-- Images: Small WebP variants for logos (`28px`/`56px`) with PNG fallback.
-- Lazy‑loading: Logos use `loading="lazy"` + `decoding="async"` for snappier paint.
-- CSS cache busting: `styles.css?v=3` avoids stale 30‑day cache (Nginx sets `expires 30d`).
+Install deps and run the dev server (default http://localhost:4321):
+
+```bash
+npm install
+npm run dev
+```
+
+Build a production bundle:
+
+```bash
+npm run build
+```
+
+Preview the built site:
+
+```bash
+npm run preview
+```
 
 ---
 
-## Routing, 404s, Robots
+## Run with Docker
 
-- SPA routing: Extensionless paths fall back to `index.html`.
-- Assets: Requests with file extensions (`.css`, `.js`, `.png`, `.webp`, `.txt`, `.xml`, etc.) are served directly or return 404.
-- Custom error page: `src/404.html` (inline styles, no external deps). Nginx sends it via `error_page 404 /404.html` and disables caching.
-- Robots: `src/robots.txt` served at `/robots.txt` (explicit Nginx handler). Add a sitemap URL when available.
-
----
-
-## Quick Start
-
-Run locally with Docker:
+Build and run the container locally (maps to port 8888):
 
 ```bash
 docker build -t puttski.com .
@@ -65,19 +71,9 @@ Open http://localhost:8888
 
 ## Deployment
 
-You can publish a container image to GitHub Container Registry (GHCR) and run it on your server.
-
-### GitHub Actions (optional)
-
-Add a workflow (e.g. `.github/workflows/docker.yml`) that:
-
-- Triggers on pushes to `main`
-- Builds the Docker image (e.g., `ghcr.io/puttrix/puttski.com:latest`)
-- Pushes to GHCR with `permissions.packages: write`
+Builds publish to GHCR via GitHub Actions (`.github/workflows/docker.yml`), then you can run the image on your server.
 
 ### Portainer or Docker Compose
-
-Example `docker-compose.yml`:
 
 ```yaml
 version: "3.8"
@@ -96,29 +92,50 @@ services:
     command: --cleanup --interval 30
 ```
 
-If GHCR is private, configure registry credentials in Portainer or the host.
+If GHCR is private, configure registry credentials on the host/Portainer.
 
-### TLS (optional)
+### Cloudflare Tunnel (recommended)
 
-- Nginx Proxy Manager: Point a Proxy Host (e.g. `https://puttski.com`) at the container, enable Let’s Encrypt.
-- Cloudflare Tunnel: Forward a public hostname to the server/container port.
+- Tunnel → Public Hostnames: `puttski.com` → `http://localhost:8888` (or container:80).
+- Cache Rules:
+  - Bypass: HTML (or `*.html`) and `/robots.txt`, `/sitemap.xml`.
+  - Cache Everything: static assets (`*.css, *.js, *.png, *.webp, *.woff2, ...`).
+- Purge cache after deploys.
+
+---
+
+## Nginx Behavior (in the container)
+
+- HTML served with no cache (via `index`/explicit files).
+- Assets (`css/js/img/webp/woff2/...`) served directly with long cache.
+- Unknown paths return the custom 404 page (`src/pages/404.astro`).
 
 ---
 
 ## Repository Structure
 
 ```
-src/
-  index.html
-  404.html
-  robots.txt
-  styles.css
-  script.js
-  img/
-    logos/
+astro.config.mjs
+package.json
 Dockerfile
 nginx.conf
-README.md
+
+public/
+  script.js
+  robots.txt
+  img/
+    H3I0509_2-600x569.jpg
+
+src/
+  styles.css
+  layouts/
+    Base.astro
+  pages/
+    index.astro
+    404.astro
+  img/
+    logos/
+
 .github/
   workflows/
     docker.yml
