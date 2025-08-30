@@ -25,6 +25,12 @@ Matomo‑first analytics, experimentation, tagging, and pragmatic engineering.
   - LinkedIn: https://www.linkedin.com/in/putte/
   - GitHub: https://github.com/Puttrix
 
+### Positioning
+
+- Matomo‑first analytics and tagging.
+- SEO/AEO/GEO focus with structured data and answer‑engine optimization.
+- Privacy‑first approach with GDPR/consent considerations.
+
 ---
 
 ## Assets & Performance
@@ -35,10 +41,12 @@ Matomo‑first analytics, experimentation, tagging, and pragmatic engineering.
 
 ---
 
-## 404 Handling
+## Routing, 404s, Robots
 
-- Custom error page: `src/404.html` (inline styles, no external deps).
-- Nginx configured with `error_page 404 /404.html` and no‑store caching for the error page.
+- SPA routing: Extensionless paths fall back to `index.html`.
+- Assets: Requests with file extensions (`.css`, `.js`, `.png`, `.webp`, `.txt`, `.xml`, etc.) are served directly or return 404.
+- Custom error page: `src/404.html` (inline styles, no external deps). Nginx sends it via `error_page 404 /404.html` and disables caching.
+- Robots: `src/robots.txt` served at `/robots.txt` (explicit Nginx handler). Add a sitemap URL when available.
 
 ---
 
@@ -103,6 +111,7 @@ If GHCR is private, configure registry credentials in Portainer or the host.
 src/
   index.html
   404.html
+  robots.txt
   styles.css
   script.js
   img/
@@ -110,6 +119,9 @@ src/
 Dockerfile
 nginx.conf
 README.md
+.github/
+  workflows/
+    docker.yml
 ```
 
 ---
