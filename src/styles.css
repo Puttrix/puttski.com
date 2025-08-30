@@ -75,14 +75,20 @@ a { color: inherit; text-underline-offset: 2px; }
 .pill { background: #f3f4f6; color: var(--text); border: 1px solid var(--border); padding: 6px 10px; border-radius: 999px; font-size: 14px; }
 
 /* Certifications */
-.certs { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.cert { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px; box-shadow: var(--shadow); }
+.certs { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.cert { background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--brand); border-radius: 10px; padding: 16px; box-shadow: var(--shadow); transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease; }
+.cert:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,0,0,0.08); border-color: #0f172a; }
+.cert[data-brand="google"] { border-left-color: #1a73e8; }
+.cert[data-brand="stape"] { border-left-color: #ff6a3d; }
+.cert[data-brand="optimizely"] { border-left-color: #2d4bf0; }
 .cert-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-.cert-logo { width: 24px; height: 24px; border-radius: 6px; display: block; }
-.cert-title { margin: 0 0 2px; font-size: 16px; }
+.cert-logo { width: 28px; height: 28px; border-radius: 6px; display: block; object-fit: contain; }
+.cert-title { margin: 0 0 2px; font-size: 18px; letter-spacing: -0.01em; }
 .cert-meta { margin: 0; color: var(--muted); font-size: 14px; }
-.cert-links { margin: 6px 0 0; font-size: 14px; }
-.certs-link { margin-top: 10px; }
+.cert-links { margin: 8px 0 0; font-size: 14px; }
+.cert-links a { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 999px; background: #fff; text-decoration: none; }
+.cert-links a:hover { background: #f9fafb; text-decoration: underline; }
+.certs-link { margin-top: 12px; text-align: center; }
 
 /* Footer */
 .site-footer { border-top: 1px solid var(--border); padding: 24px 0 48px; color: var(--muted); }
