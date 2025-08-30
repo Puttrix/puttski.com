@@ -24,6 +24,9 @@ body {
 
 a { color: inherit; text-underline-offset: 2px; }
 
+/* Ensure consistent heading sizes in sectioning content (Lighthouse/MDN note) */
+h1 { font-size: clamp(28px, 5vw, 42px); line-height: 1.15; margin: 0 0 0.4em; }
+
 .container { width: min(1100px, 92%); margin: 0 auto; }
 
 /* Header */
