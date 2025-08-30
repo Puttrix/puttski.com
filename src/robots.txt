@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow server-only paths (none currently used)
+# Disallow: /api/
+
+# If you add a sitemap, update this URL accordingly
+# Sitemap: https://puttski.com/sitemap.xml
+
