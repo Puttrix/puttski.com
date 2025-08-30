@@ -1,0 +1,58 @@
+---
+import "../styles.css";
+const { title = 'Putte Arvfors — Web Analyst & Digital Troublemaker', description = 'Putte Arvfors — Web Analyst and Digital Troublemaker. Matomo‑first analytics, SEO/AEO/GEO, experimentation, and privacy‑first data practices (GDPR).' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="Putte Arvfors — Web Analyst & Digital Troublemaker" />
+    <meta property="og:description" content="Matomo‑first analytics, SEO/AEO/GEO, experimentation, and privacy‑first data practices (GDPR)." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/img/H3I0509_2-600x569.jpg" />
+    <meta property="og:url" content="https://puttski.com/" />
+    <link rel="canonical" href="https://puttski.com/" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%93%8A%3C/text%3E%3C/svg%3E" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {"@type":"WebSite","@id":"https://puttski.com/#website","url":"https://puttski.com/","name":"Puttski — Putte Arvfors","inLanguage":"en"},
+        {"@type":"WebPage","@id":"https://puttski.com/#webpage","url":"https://puttski.com/","name":"Putte Arvfors — Web Analyst & Digital Troublemaker","isPartOf":{"@id":"https://puttski.com/#website"},"description":"Matomo‑first analytics, SEO/AEO/GEO, experimentation, and privacy‑first data practices (GDPR).","inLanguage":"en","about":{"@id":"https://puttski.com/#person"},"breadcrumb":{"@id":"https://puttski.com/#breadcrumbs"}},
+        {"@type":"Person","@id":"https://puttski.com/#person","name":"Putte Arvfors","url":"https://puttski.com/","jobTitle":"Web Analyst & Digital Troublemaker","image":"https://puttski.com/img/H3I0509_2-600x569.jpg","email":"mailto:putte@arvfors.se","sameAs":["https://www.linkedin.com/in/putte/","https://github.com/Puttrix"],"knowsAbout":["Matomo","Matomo Tag Manager","SEO","AEO","GEO","Technical SEO","Structured Data","Consent","Privacy","GDPR","Experimentation","Optimizely","VWO","GA4","GTM","BigQuery","Looker Studio","JavaScript","Python","Docker","GitHub Actions"],"hasCredential":[{"@type":"EducationalOccupationalCredential","name":"Google Analytics Certification","url":"https://skillshop.credential.net/ce699bf3-df60-48b9-976e-158b4f3ed17e#acc.UnmqXpbG","recognizedBy":{"@type":"Organization","name":"Google Digital Academy (Skillshop)"},"credentialCategory":"Certification","issuedBy":{"@type":"Organization","name":"Google"},"dateIssued":"2025-08","validUntil":"2026-08"},{"@type":"EducationalOccupationalCredential","name":"Server-side tagging with Stape | Certificate","url":"https://stape.io/academy","recognizedBy":{"@type":"Organization","name":"Stape"},"credentialCategory":"Certificate","dateIssued":"2025-08","identifier":"66a749616a9ac80fb105a5e5"},{"@type":"EducationalOccupationalCredential","name":"Experiment Collaboration Explorer","url":"https://academy.optimizely.com/student/award/xE9A7XyUinhuuAGgCwd419xC","recognizedBy":{"@type":"Organization","name":"Optimizely"},"credentialCategory":"Certification","dateIssued":"2025-01"},{"@type":"EducationalOccupationalCredential","name":"Optimizely Experimentation Certified Strategist — Core Competency 2025","url":"https://www.credly.com/badges/713ca562-f48b-4c95-b8e1-8dca63c90e57/linked_in_profile","recognizedBy":{"@type":"Organization","name":"Optimizely"},"credentialCategory":"Certification","dateIssued":"2025-01","validUntil":"2027-01"},{"@type":"EducationalOccupationalCredential","name":"Optimizely Certified Experimentation Web Platform Expert","url":"https://www.credly.com/badges/04fbba65-93a5-4ace-8fd4-67649309fa1f/linked_in_profile","recognizedBy":{"@type":"Organization","name":"Optimizely"},"credentialCategory":"Certification","dateIssued":"2024-02","validUntil":"2026-02"}]},
+        {"@type":"BreadcrumbList","@id":"https://puttski.com/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://puttski.com/"},{"@type":"ListItem","position":2,"name":"About","item":"https://puttski.com/#about"},{"@type":"ListItem","position":3,"name":"Focus","item":"https://puttski.com/#work"},{"@type":"ListItem","position":4,"name":"Skills","item":"https://puttski.com/#skills"},{"@type":"ListItem","position":5,"name":"Certifications","item":"https://puttski.com/#certifications"},{"@type":"ListItem","position":6,"name":"Contact","item":"https://puttski.com/#contact"}]}
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="#top" aria-label="Putte Arvfors Home">Puttski</a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#skills">Skills</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="container">
+        <small>© <span id="year"></span> Putte Arvfors • Built with Nginx + Docker</small>
+      </div>
+    </footer>
+
+    <script src="/script.js" defer></script>
+  </body>
+  </html>
+

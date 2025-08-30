@@ -1,0 +1,21 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base title="404 — Page Not Found — puttski.com" description="404 — Page not found">
+  <main class="wrap" style="width:min(800px,92%);margin:0 auto;padding:80px 0 40px">
+    <section class="card" aria-labelledby="nf-title" style="border:1px solid #e5e7eb;border-left:3px solid #111827;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.06);padding:24px">
+      <h1 id="nf-title">404 — Page Not Found</h1>
+      <p style="color:#6b7280">Sorry, we couldn’t find what you’re looking for.</p>
+      <p style="color:#6b7280">If you followed a link, it may be outdated or the file may have moved.</p>
+      <div class="cta" style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="button" href="/" style="display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid #e5e7eb;background:#fff;color:#0a0a0a;text-decoration:none;font-weight:600">Go to homepage</a>
+        <a class="button" href="/" style="display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid #e5e7eb;background:#fff;color:#0a0a0a;text-decoration:none;font-weight:600">Try a fresh reload</a>
+      </div>
+      <p><small>Request URL: <code id="url"></code></small></p>
+    </section>
+  </main>
+  <script>
+    document.getElementById('url').textContent = location.pathname + location.search;
+  </script>
+</Base>
+
