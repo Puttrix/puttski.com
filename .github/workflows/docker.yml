@@ -2,6 +2,7 @@ name: build-and-push
 on:
   push:
     branches: [ "main" ]
+
 permissions:
   contents: read
   packages: write
@@ -12,20 +13,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # If package.json has a build script (e.g., Vite), uncomment:
+      # Optional: build static assets here if you use a bundler
       # - uses: actions/setup-node@v4
-      #   with: { node-version: 20 }
+      #   with:
+      #     node-version: 20
       # - run: npm ci
       # - run: npm run build
-      # and in your Dockerfile switch COPY to copy /dist instead.
 
-      - name: Login to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" \
-             | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Build & Push
+      - name: Build image
         env:
-          IMAGE: ghcr.io/${{ github.repository_owner }}/puttski.com
+          IMAGE: ghcr.io/puttrix/puttski.com
         run: |
           docker build -t $IMAGE:latest .
+      
+      - name: Push image
+        env:
+          IMAGE: ghcr.io/puttrix/puttski.com
+        run: |
           docker push $IMAGE:latest
