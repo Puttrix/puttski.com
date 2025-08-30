@@ -1,4 +1,26 @@
 .git
 .github
+.gitignore
+
+# Dependencies
 node_modules
+**/node_modules
+
+# OS / editor junk
+**/.DS_Store
+
+# Logs
+*.log
+**/*.log
+
+# Build output
 dist
+build
+.next
+.out
+
+# Environment files
+.env
+.env.*
+**/.env
+**/.env.*
