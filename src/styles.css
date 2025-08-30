@@ -7,6 +7,7 @@
   --brand: #111827; /* near-black */
   --radius: 12px;
   --shadow: 0 8px 24px rgba(0,0,0,0.06);
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
