@@ -169,6 +169,7 @@ h1 { font-size: clamp(28px, 5vw, 42px); line-height: 1.15; margin: 0 0 0.4em; }
 }
 .mobile-overlay[data-state="opening"],
 .mobile-overlay[data-state="open"] { opacity: 1; }
+.mobile-overlay[data-state="closing"] { opacity: 0; }
 
 .mobile-nav {
   margin-left: auto; /* slide in from right */
@@ -184,6 +185,7 @@ h1 { font-size: clamp(28px, 5vw, 42px); line-height: 1.15; margin: 0 0 0.4em; }
 }
 .mobile-overlay[data-state="opening"] .mobile-nav,
 .mobile-overlay[data-state="open"] .mobile-nav { transform: translateX(0); }
+.mobile-overlay[data-state="closing"] .mobile-nav { transform: translateX(100%); }
 
 .mobile-nav .close-btn { align-self: flex-end; }
 .mobile-nav a { display: block; padding: 12px 4px; text-decoration: none; color: var(--text); font-weight: 600; border-bottom: 1px solid var(--border); }

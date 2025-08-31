@@ -86,8 +86,9 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const open = () => {
     overlay.hidden = false;
     overlay.setAttribute('data-state','opening');
-    // Run on next frame to start transition
-    requestAnimationFrame(() => overlay.setAttribute('data-state','open'));
+    // Force reflow then start transition for Safari
+    menu.getBoundingClientRect();
+    overlay.setAttribute('data-state','open');
     toggle.setAttribute('aria-expanded','true');
     document.body.style.overflow = 'hidden';
   };
