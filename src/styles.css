@@ -85,7 +85,11 @@ h1 { font-size: clamp(28px, 5vw, 42px); line-height: 1.15; margin: 0 0 0.4em; }
 .nav a:hover { text-decoration: underline; }
 
 /* Language picker */
-.language-picker { position: relative; }
+.language-picker { 
+  position: relative; 
+  display: inline-block;
+}
+
 .lang-menu {
   position: absolute;
   top: 100%;
@@ -96,25 +100,43 @@ h1 { font-size: clamp(28px, 5vw, 42px); line-height: 1.15; margin: 0 0 0.4em; }
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   min-width: 120px;
-  z-index: 100;
+  z-index: 1000;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
 }
+
+.lang-menu[hidden] {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
 .lang-menu a {
   display: block;
-  padding: 8px 12px;
+  padding: 10px 12px;
   color: var(--text);
   text-decoration: none;
   font-size: 14px;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
 }
+
 .lang-menu a:hover {
   background: var(--hover);
 }
+
 .lang-menu a.active {
   background: var(--chip);
   font-weight: 600;
 }
+
 .lang-menu a:first-child {
   border-radius: var(--radius) var(--radius) 0 0;
 }
+
 .lang-menu a:last-child {
   border-radius: 0 0 var(--radius) var(--radius);
 }
