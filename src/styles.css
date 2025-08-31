@@ -134,8 +134,8 @@ h1 { font-size: clamp(28px, 5vw, 42px); line-height: 1.15; margin: 0 0 0.4em; }
 .cert-title { margin: 0 0 2px; font-size: 18px; letter-spacing: -0.01em; }
 .cert-meta { margin: 0; color: var(--muted); font-size: 14px; }
 .cert-links { margin: 8px 0 0; font-size: 14px; }
-.cert-links a { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 999px; background: #fff; text-decoration: none; }
-.cert-links a:hover { background: #f9fafb; text-decoration: underline; }
+.cert-links a { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 999px; background: var(--panel); color: var(--text); text-decoration: none; }
+.cert-links a:hover { background: var(--hover); text-decoration: underline; }
 .certs-link { margin-top: 12px; text-align: center; }
 
 /* Footer */
