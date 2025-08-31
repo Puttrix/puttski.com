@@ -12,6 +12,7 @@ Matomo‑first analytics, SEO/AEO/GEO, experimentation, and privacy‑first engi
 - **Language picker**: Flag-based dropdown in header with smooth transitions and mobile support.
 - **Expanded content pages**: Detailed "About" and "Work" pages with comprehensive professional information.
 - **Context-aware navigation**: Smart navigation that uses anchor links on homepage, full URLs on content pages.
+- **Matomo Tag Manager**: Integrated analytics tracking with container `uEmi1sg3` from `matomo.surputte.se`.
 - **Structured data**: JSON‑LD for `WebSite`, `WebPage`, `Person`, credentials, and breadcrumbs (localized).
 - **Optimized assets**: WebP logos with PNG fallbacks, lazy‑loading, and tight sizing.
 - **Dark mode**: Auto by system preference, plus a user toggle (Auto/Light/Dark).
@@ -29,6 +30,7 @@ Matomo‑first analytics, SEO/AEO/GEO, experimentation, and privacy‑first engi
 - **Header branding**: Logo displays "Puttski - Putte Arvfors" for clear personal identification.
 - **Updated skills**: Added AI tools (Claude Code, ChatGPT, OpenAI Codex, GitHub Copilot) and Optimizely products (ODP, CMS).
 - **Certifications**: Show issuer logos and link to public credentials with localized text.
+- **Analytics integration**: Matomo Tag Manager implementation in `src/layouts/Base.astro` for privacy-first tracking.
 - **JSON‑LD**: Added in `src/layouts/Base.astro` with language-aware structured data.
 - **Theme system**: CSS variables in `src/styles.css` with `@media (prefers-color-scheme)` and manual override via `data-theme`.
 - **Links**:
