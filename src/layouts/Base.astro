@@ -24,6 +24,26 @@ const navLabels = isSwedish ? {
 
 const siteUrl = lang === 'sv' ? 'https://puttski.com/sv' : 'https://puttski.com/';
 const canonicalUrl = siteUrl;
+
+// Get current page to determine navigation behavior
+const currentPath = Astro.url.pathname;
+const isHomepage = currentPath === '/' || currentPath === '/sv' || currentPath === '/sv/';
+const baseUrl = lang === 'sv' ? '/sv' : '/';
+
+// Navigation URLs - use homepage anchors if on homepage, otherwise use full URLs
+const navUrls = isHomepage ? {
+  about: '#about',
+  work: '#work', 
+  skills: '#skills',
+  certifications: '#certifications',
+  contact: '#contact'
+} : {
+  about: lang === 'sv' ? '/sv#about' : '/#about',
+  work: lang === 'sv' ? '/sv#work' : '/#work',
+  skills: lang === 'sv' ? '/sv#skills' : '/#skills', 
+  certifications: lang === 'sv' ? '/sv#certifications' : '/#certifications',
+  contact: lang === 'sv' ? '/sv#contact' : '/#contact'
+};
 ---
 <!doctype html>
 <html lang={lang}>
@@ -58,10 +78,10 @@ const canonicalUrl = siteUrl;
     {
       "@context": "https://schema.org",
       "@graph": [
-        {"@type":"WebSite","@id":"https://puttski.com/#website","url":"https://puttski.com/","name":"Puttski — Putte Arvfors","inLanguage":lang},
-        {"@type":"WebPage","@id":`${siteUrl}#webpage`,"url":siteUrl,"name":title,"isPartOf":{"@id":"https://puttski.com/#website"},"description":description,"inLanguage":lang,"about":{"@id":"https://puttski.com/#person"},"breadcrumb":{"@id":`${siteUrl}#breadcrumbs`}},
-        {"@type":"Person","@id":"https://puttski.com/#person","name":"Putte Arvfors","url":"https://puttski.com/","jobTitle":isSwedish ? "Webbanalytiker & Digital Problemlösare" : "Web Analyst & Digital Troublemaker","image":"https://puttski.com/img/H3I0509_2-600x569.jpg","email":"mailto:putte@arvfors.se","sameAs":["https://www.linkedin.com/in/putte/","https://github.com/Puttrix"],"knowsAbout":["Matomo","Matomo Tag Manager","SEO","AEO","GEO","Technical SEO","Structured Data","Consent","Privacy","GDPR","Experimentation","Optimizely","Optimizely ODP","Optimizely CMS","VWO","GA4","GTM","BigQuery","Looker Studio","JavaScript","Python","Docker","GitHub Actions","GitHub","Claude Code","ChatGPT","OpenAI Codex","GitHub Copilot"],"hasCredential":[{"@type":"EducationalOccupationalCredential","name":"Google Analytics Certification","url":"https://skillshop.credential.net/ce699bf3-df60-48b9-976e-158b4f3ed17e#acc.UnmqXpbG","recognizedBy":{"@type":"Organization","name":"Google Digital Academy (Skillshop)"},"credentialCategory":"Certification","issuedBy":{"@type":"Organization","name":"Google"},"dateIssued":"2025-08","validUntil":"2026-08"},{"@type":"EducationalOccupationalCredential","name":"Server-side tagging with Stape | Certificate","url":"https://stape.io/academy","recognizedBy":{"@type":"Organization","name":"Stape"},"credentialCategory":"Certificate","dateIssued":"2025-08","identifier":"66a749616a9ac80fb105a5e5"},{"@type":"EducationalOccupationalCredential","name":"Experiment Collaboration Explorer","url":"https://academy.optimizely.com/student/award/xE9A7XyUinhuuAGgCwd419xC","recognizedBy":{"@type":"Organization","name":"Optimizely"},"credentialCategory":"Certification","dateIssued":"2025-01"},{"@type":"EducationalOccupationalCredential","name":"Optimizely Experimentation Certified Strategist — Core Competency 2025","url":"https://www.credly.com/badges/713ca562-f48b-4c95-b8e1-8dca63c90e57/linked_in_profile","recognizedBy":{"@type":"Organization","name":"Optimizely"},"credentialCategory":"Certification","dateIssued":"2025-01","validUntil":"2027-01"},{"@type":"EducationalOccupationalCredential","name":"Optimizely Certified Experimentation Web Platform Expert","url":"https://www.credly.com/badges/04fbba65-93a5-4ace-8fd4-67649309fa1f/linked_in_profile","recognizedBy":{"@type":"Organization","name":"Optimizely"},"credentialCategory":"Certification","dateIssued":"2024-02","validUntil":"2026-02"}]},
-        {"@type":"BreadcrumbList","@id":`${siteUrl}#breadcrumbs`,"itemListElement":[{"@type":"ListItem","position":1,"name":isSwedish ? "Hem" : "Home","item":siteUrl},{"@type":"ListItem","position":2,"name":navLabels.about,"item":`${siteUrl}#about`},{"@type":"ListItem","position":3,"name":navLabels.work,"item":`${siteUrl}#work`},{"@type":"ListItem","position":4,"name":navLabels.skills,"item":`${siteUrl}#skills`},{"@type":"ListItem","position":5,"name":navLabels.certifications,"item":`${siteUrl}#certifications`},{"@type":"ListItem","position":6,"name":navLabels.contact,"item":`${siteUrl}#contact`}]}
+        {"@type":"WebSite","@id":"https://puttski.com/#website","url":"https://puttski.com/","name":"Puttski — Putte Arvfors","inLanguage":"{lang}"},
+        {"@type":"WebPage","@id":"{siteUrl}#webpage","url":"{siteUrl}","name":"{title}","isPartOf":{"@id":"https://puttski.com/#website"},"description":"{description}","inLanguage":"{lang}","about":{"@id":"https://puttski.com/#person"},"breadcrumb":{"@id":"{siteUrl}#breadcrumbs"}},
+        {"@type":"Person","@id":"https://puttski.com/#person","name":"Putte Arvfors","url":"https://puttski.com/","jobTitle":"{isSwedish ? 'Webbanalytiker & Digital Problemlösare' : 'Web Analyst & Digital Troublemaker'}","image":"https://puttski.com/img/H3I0509_2-600x569.jpg","email":"mailto:putte@arvfors.se","sameAs":["https://www.linkedin.com/in/putte/","https://github.com/Puttrix"],"knowsAbout":["Matomo","Matomo Tag Manager","SEO","AEO","GEO","Technical SEO","Structured Data","Consent","Privacy","GDPR","Experimentation","Optimizely","Optimizely ODP","Optimizely CMS","VWO","GA4","GTM","BigQuery","Looker Studio","JavaScript","Python","Docker","GitHub Actions","GitHub","Claude Code","ChatGPT","OpenAI Codex","GitHub Copilot"],"hasCredential":[{"@type":"EducationalOccupationalCredential","name":"Google Analytics Certification","url":"https://skillshop.credential.net/ce699bf3-df60-48b9-976e-158b4f3ed17e#acc.UnmqXpbG","recognizedBy":{"@type":"Organization","name":"Google Digital Academy (Skillshop)"},"credentialCategory":"Certification","issuedBy":{"@type":"Organization","name":"Google"},"dateIssued":"2025-08","validUntil":"2026-08"},{"@type":"EducationalOccupationalCredential","name":"Server-side tagging with Stape | Certificate","url":"https://stape.io/academy","recognizedBy":{"@type":"Organization","name":"Stape"},"credentialCategory":"Certificate","dateIssued":"2025-08","identifier":"66a749616a9ac80fb105a5e5"},{"@type":"EducationalOccupationalCredential","name":"Experiment Collaboration Explorer","url":"https://academy.optimizely.com/student/award/xE9A7XyUinhuuAGgCwd419xC","recognizedBy":{"@type":"Organization","name":"Optimizely"},"credentialCategory":"Certification","dateIssued":"2025-01"},{"@type":"EducationalOccupationalCredential","name":"Optimizely Experimentation Certified Strategist — Core Competency 2025","url":"https://www.credly.com/badges/713ca562-f48b-4c95-b8e1-8dca63c90e57/linked_in_profile","recognizedBy":{"@type":"Organization","name":"Optimizely"},"credentialCategory":"Certification","dateIssued":"2025-01","validUntil":"2027-01"},{"@type":"EducationalOccupationalCredential","name":"Optimizely Certified Experimentation Web Platform Expert","url":"https://www.credly.com/badges/04fbba65-93a5-4ace-8fd4-67649309fa1f/linked_in_profile","recognizedBy":{"@type":"Organization","name":"Optimizely"},"credentialCategory":"Certification","dateIssued":"2024-02","validUntil":"2026-02"}]},
+        {"@type":"BreadcrumbList","@id":"{siteUrl}#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"{isSwedish ? 'Hem' : 'Home'}","item":"{siteUrl}"},{"@type":"ListItem","position":2,"name":"{navLabels.about}","item":"{siteUrl}#about"},{"@type":"ListItem","position":3,"name":"{navLabels.work}","item":"{siteUrl}#work"},{"@type":"ListItem","position":4,"name":"{navLabels.skills}","item":"{siteUrl}#skills"},{"@type":"ListItem","position":5,"name":"{navLabels.certifications}","item":"{siteUrl}#certifications"},{"@type":"ListItem","position":6,"name":"{navLabels.contact}","item":"{siteUrl}#contact"}]}
       ]
     }
     </script>
@@ -69,14 +89,14 @@ const canonicalUrl = siteUrl;
   <body>
     <header class="site-header">
       <div class="container">
-        <a class="logo" href="#top" aria-label="Putte Arvfors Home">Puttski</a>
+        <a class="logo" href={baseUrl} aria-label="Putte Arvfors Home">Puttski - Putte Arvfors</a>
         <div class="actions">
           <nav class="nav" aria-label="Primary">
-            <a href="#about">{navLabels.about}</a>
-            <a href="#work">{navLabels.work}</a>
-            <a href="#skills">{navLabels.skills}</a>
-            <a href="#certifications">{navLabels.certifications}</a>
-            <a href="#contact">{navLabels.contact}</a>
+            <a href={navUrls.about}>{navLabels.about}</a>
+            <a href={navUrls.work}>{navLabels.work}</a>
+            <a href={navUrls.skills}>{navLabels.skills}</a>
+            <a href={navUrls.certifications}>{navLabels.certifications}</a>
+            <a href={navUrls.contact}>{navLabels.contact}</a>
           </nav>
           <div class="language-picker">
             <button id="lang-toggle" class="button ghost" type="button" aria-label={isSwedish ? "Välj språk" : "Select language"} title={isSwedish ? "Välj språk" : "Select language"}>
@@ -97,11 +117,11 @@ const canonicalUrl = siteUrl;
     <div id="mobile-overlay" class="mobile-overlay" hidden>
       <nav id="mobile-menu" class="mobile-nav" aria-label="Mobile">
         <button class="button ghost close-btn" type="button" data-close aria-label={isSwedish ? "Stäng meny" : "Close menu"}>✕</button>
-        <a href="#about">{navLabels.about}</a>
-        <a href="#work">{navLabels.work}</a>
-        <a href="#skills">{navLabels.skills}</a>
-        <a href="#certifications">{navLabels.certifications}</a>
-        <a href="#contact">{navLabels.contact}</a>
+        <a href={navUrls.about}>{navLabels.about}</a>
+        <a href={navUrls.work}>{navLabels.work}</a>
+        <a href={navUrls.skills}>{navLabels.skills}</a>
+        <a href={navUrls.certifications}>{navLabels.certifications}</a>
+        <a href={navUrls.contact}>{navLabels.contact}</a>
         <div class="mobile-lang-links">
           <a href="/" class={lang === 'en' ? 'active' : ''}>🇬🇧 English</a>
           <a href="/sv" class={lang === 'sv' ? 'active' : ''}>🇸🇪 Svenska</a>

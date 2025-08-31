@@ -5,10 +5,14 @@ Matomo‑first analytics, SEO/AEO/GEO, experimentation, and privacy‑first engi
 
 ---
 
-## What’s Inside (Astro + Nginx)
+## What's Inside (Astro + Nginx)
 
 - **Astro static site**: Modern, content‑first framework generating static HTML/CSS/JS.
-- **Structured data**: JSON‑LD for `WebSite`, `WebPage`, `Person`, credentials, and breadcrumbs.
+- **Multilingual support**: English (`/`) and Swedish (`/sv`) with automatic browser detection.
+- **Language picker**: Flag-based dropdown in header with smooth transitions and mobile support.
+- **Expanded content pages**: Detailed "About" and "Work" pages with comprehensive professional information.
+- **Context-aware navigation**: Smart navigation that uses anchor links on homepage, full URLs on content pages.
+- **Structured data**: JSON‑LD for `WebSite`, `WebPage`, `Person`, credentials, and breadcrumbs (localized).
 - **Optimized assets**: WebP logos with PNG fallbacks, lazy‑loading, and tight sizing.
 - **Dark mode**: Auto by system preference, plus a user toggle (Auto/Light/Dark).
 - **Nginx runtime**: Serves the built site with a custom 404 and long‑cache for assets.
@@ -19,11 +23,15 @@ Matomo‑first analytics, SEO/AEO/GEO, experimentation, and privacy‑first engi
 
 ## Site Content
 
-- Hero, About, Focus, Skills, Certifications, and Contact (see `src/pages/index.astro`).
-- Certifications show issuer logos and link to public credentials.
-- JSON‑LD added in `src/layouts/Base.astro` (including breadcrumbs).
-- Theme system: CSS variables in `src/styles.css` with `@media (prefers-color-scheme)` and manual override via `data-theme`.
-- Links:
+- **Multilingual pages**: English (`src/pages/index.astro`) and Swedish (`src/pages/sv.astro`).
+- **Sections**: Hero, About, Focus, Skills, Certifications, and Contact with full translations.
+- **Expanded content**: Dedicated `/about` and `/work` pages with detailed professional information and Swedish translations (`/sv/om`, `/sv/arbete`).
+- **Header branding**: Logo displays "Puttski - Putte Arvfors" for clear personal identification.
+- **Updated skills**: Added AI tools (Claude Code, ChatGPT, OpenAI Codex, GitHub Copilot) and Optimizely products (ODP, CMS).
+- **Certifications**: Show issuer logos and link to public credentials with localized text.
+- **JSON‑LD**: Added in `src/layouts/Base.astro` with language-aware structured data.
+- **Theme system**: CSS variables in `src/styles.css` with `@media (prefers-color-scheme)` and manual override via `data-theme`.
+- **Links**:
   - LinkedIn: https://www.linkedin.com/in/putte/
   - GitHub: https://github.com/Puttrix
 
@@ -55,6 +63,14 @@ Preview the built site:
 ```bash
 npm run preview
 ```
+
+### Language Support
+
+- **Automatic detection**: Browser language detection redirects Swedish users to `/sv` automatically.
+- **Manual switching**: Language picker (🇬🇧/🇸🇪) in header with dropdown menu.
+- **Persistent choice**: User preferences stored in `localStorage` to prevent unwanted redirects.
+- **Mobile friendly**: Language links included in mobile navigation menu.
+- **SEO optimized**: Proper `hreflang`, canonical URLs, and localized structured data.
 
 ### Theme Toggle (Auto/Light/Dark)
 
@@ -129,26 +145,35 @@ astro.config.mjs
 package.json
 Dockerfile
 nginx.conf
+CLAUDE.md        # Instructions for Claude Code
 
 public/
-  script.js
+  script.js      # Theme toggle, mobile menu, language picker
   robots.txt
   img/
     H3I0509_2-600x569.jpg
 
 src/
-  styles.css
+  utils/
+    i18n.js      # Translation utilities (not actively used)
+  styles.css     # Global styles with language picker CSS
   layouts/
-    Base.astro
+    Base.astro   # Main layout with multilingual support and context-aware navigation
   pages/
-    index.astro
-    404.astro
+    index.astro  # English homepage
+    about.astro  # Detailed about page (English)
+    work.astro   # Detailed work/focus areas page (English)
+    sv.astro     # Swedish homepage  
+    sv/
+      om.astro   # About page (Swedish)
+      arbete.astro # Work page (Swedish)
+    404.astro    # Custom 404 page
   img/
-    logos/
+    logos/       # WebP logos with PNG fallbacks
 
 .github/
   workflows/
-    docker.yml
+    docker.yml   # CI/CD pipeline
 ```
 
 ---

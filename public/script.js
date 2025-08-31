@@ -126,10 +126,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 (function languagePicker(){
   const langToggle = document.getElementById('lang-toggle');
   const langMenu = document.getElementById('lang-menu');
-  if (!langToggle || !langMenu) {
-    console.log('Language picker elements not found:', {langToggle, langMenu});
-    return;
-  }
+  if (!langToggle || !langMenu) return;
 
   // Initialize menu as closed
   langMenu.hidden = true;
@@ -138,25 +135,26 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const openMenu = () => {
     langMenu.hidden = false;
     langToggle.setAttribute('aria-expanded', 'true');
-    console.log('Language menu opened');
   };
 
   const closeMenu = () => {
     langMenu.hidden = true;
     langToggle.setAttribute('aria-expanded', 'false');
-    console.log('Language menu closed');
+  };
+
+  const toggleMenu = () => {
+    if (langMenu.hidden) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
   };
 
   // Toggle menu on button click
   langToggle.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('Language toggle clicked, menu hidden:', langMenu.hidden);
-    if (langMenu.hidden) {
-      openMenu();
-    } else {
-      closeMenu();
-    }
+    toggleMenu();
   });
 
   // Close menu when clicking outside
