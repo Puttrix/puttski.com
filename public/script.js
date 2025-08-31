@@ -19,6 +19,9 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const btn = document.getElementById('theme-toggle');
   if (!btn) return;
   const root = document.documentElement;
+  const meta = document.getElementById('meta-theme-color');
+  const LIGHT = '#ffffff';
+  const DARK = '#0b1220';
 
   const readStored = () => {
     try { return localStorage.getItem('theme') || 'auto'; } catch (e) { return 'auto'; }
@@ -36,9 +39,17 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const labelFor = (t) => t === 'light' ? '☀️' : t === 'dark' ? '🌙' : '🌓';
   const titleFor = (t) => t === 'light' ? 'Theme: Light' : t === 'dark' ? 'Theme: Dark' : 'Theme: Auto';
 
+  const setMetaTheme = (t) => {
+    if (!meta) return;
+    if (t === 'dark') meta.content = DARK;
+    else if (t === 'light') meta.content = LIGHT;
+    else meta.content = window.matchMedia('(prefers-color-scheme: dark)').matches ? DARK : LIGHT;
+  };
+
   const setState = (t) => {
     writeStored(t);
     applyTheme(t);
+    setMetaTheme(t);
     btn.textContent = labelFor(t);
     btn.title = titleFor(t);
     btn.setAttribute('aria-label', titleFor(t));
@@ -56,6 +67,11 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
   // If in auto, reflect system preference changes without changing stored state
   const mql = window.matchMedia('(prefers-color-scheme: dark)');
-  const syncIfAuto = () => { if (readStored() === 'auto') applyTheme('auto'); };
+  const syncIfAuto = () => {
+    if (readStored() === 'auto') {
+      applyTheme('auto');
+      setMetaTheme('auto');
+    }
+  };
   mql.addEventListener?.('change', syncIfAuto);
 })();

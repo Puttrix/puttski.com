@@ -13,9 +13,9 @@
   color-scheme: light;
 }
 
-/* Dark theme (prefers-color-scheme) */
+/* Dark theme (when following system). Only apply if no manual override. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --bg: #0b1220;
     --panel: #101827;
     --text: #e5e7eb;
