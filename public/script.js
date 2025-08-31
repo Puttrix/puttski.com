@@ -121,3 +121,61 @@ document.getElementById('year').textContent = new Date().getFullYear();
     if (e.target === overlay || e.target.matches('[data-close], a')) close();
   });
 })();
+
+// Language picker: dropdown menu for language selection
+(function languagePicker(){
+  const langToggle = document.getElementById('lang-toggle');
+  const langMenu = document.getElementById('lang-menu');
+  if (!langToggle || !langMenu) return;
+
+  const openMenu = () => {
+    langMenu.hidden = false;
+    langToggle.setAttribute('aria-expanded', 'true');
+  };
+
+  const closeMenu = () => {
+    langMenu.hidden = true;
+    langToggle.setAttribute('aria-expanded', 'false');
+  };
+
+  // Toggle menu on button click
+  langToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langMenu.hidden ? openMenu() : closeMenu();
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!langToggle.contains(e.target) && !langMenu.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // Auto-redirect based on browser language
+  (function autoLanguageDetect(){
+    // Only run on index page and if no explicit language choice made
+    if (window.location.pathname !== '/' || localStorage.getItem('lang-choice')) return;
+
+    const browserLang = navigator.language || navigator.languages?.[0];
+    if (!browserLang) return;
+
+    const langCode = browserLang.split('-')[0].toLowerCase();
+    if (langCode === 'sv') {
+      // Mark that user has been auto-redirected
+      localStorage.setItem('lang-choice', 'auto');
+      window.location.href = '/sv';
+    }
+  })();
+
+  // Mark manual language choice
+  langMenu.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      localStorage.setItem('lang-choice', 'manual');
+    }
+  });
+})();
