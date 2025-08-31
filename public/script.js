@@ -73,7 +73,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
       setMetaTheme('auto');
     }
   };
-  mql.addEventListener?.('change', syncIfAuto);
+  if (mql.addEventListener) mql.addEventListener('change', syncIfAuto);
+  else if (mql.addListener) mql.addListener(syncIfAuto);
 })();
 
 // Mobile menu: simple sheet for small screens
