@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- English Homepage -->
+  <url>
+    <loc>https://puttski.com/</loc>
+    <lastmod>2025-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://puttski.com/sv" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://puttski.com/" />
+  </url>
+
+  <!-- Swedish Homepage -->
+  <url>
+    <loc>https://puttski.com/sv</loc>
+    <lastmod>2025-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://puttski.com/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://puttski.com/sv" />
+  </url>
+
+  <!-- English About Page -->
+  <url>
+    <loc>https://puttski.com/about</loc>
+    <lastmod>2025-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://puttski.com/sv/om" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://puttski.com/about" />
+  </url>
+
+  <!-- Swedish About Page -->
+  <url>
+    <loc>https://puttski.com/sv/om</loc>
+    <lastmod>2025-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://puttski.com/about" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://puttski.com/sv/om" />
+  </url>
+
+  <!-- English Work Page -->
+  <url>
+    <loc>https://puttski.com/work</loc>
+    <lastmod>2025-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://puttski.com/sv/arbete" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://puttski.com/work" />
+  </url>
+
+  <!-- Swedish Work Page -->
+  <url>
+    <loc>https://puttski.com/sv/arbete</loc>
+    <lastmod>2025-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://puttski.com/work" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://puttski.com/sv/arbete" />
+  </url>
+</urlset>

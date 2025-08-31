@@ -13,6 +13,7 @@ Matomo‑first analytics, SEO/AEO/GEO, experimentation, and privacy‑first engi
 - **Expanded content pages**: Detailed "About" and "Work" pages with comprehensive professional information.
 - **Context-aware navigation**: Smart navigation that uses anchor links on homepage, full URLs on content pages.
 - **Matomo Tag Manager**: Integrated analytics tracking with container `uEmi1sg3` from `matomo.surputte.se`.
+- **SEO optimized**: XML sitemap with hreflang annotations for multilingual SEO.
 - **Structured data**: JSON‑LD for `WebSite`, `WebPage`, `Person`, credentials, and breadcrumbs (localized).
 - **Optimized assets**: WebP logos with PNG fallbacks, lazy‑loading, and tight sizing.
 - **Dark mode**: Auto by system preference, plus a user toggle (Auto/Light/Dark).
@@ -152,6 +153,7 @@ CLAUDE.md        # Instructions for Claude Code
 public/
   script.js      # Theme toggle, mobile menu, language picker
   robots.txt
+  sitemap.xml    # XML sitemap with multilingual hreflang annotations
   img/
     H3I0509_2-600x569.jpg
 
