@@ -75,3 +75,47 @@ document.getElementById('year').textContent = new Date().getFullYear();
   };
   mql.addEventListener?.('change', syncIfAuto);
 })();
+
+// Mobile menu: simple sheet for small screens
+(function mobileMenu(){
+  const toggle = document.getElementById('mobile-toggle');
+  const overlay = document.getElementById('mobile-overlay');
+  const menu = document.getElementById('mobile-menu');
+  if (!toggle || !overlay || !menu) return;
+
+  const open = () => {
+    overlay.hidden = false;
+    overlay.setAttribute('data-state','opening');
+    // Run on next frame to start transition
+    requestAnimationFrame(() => overlay.setAttribute('data-state','open'));
+    toggle.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const hideOverlay = () => {
+    overlay.hidden = true;
+    overlay.removeAttribute('data-state');
+    document.body.style.overflow = '';
+  };
+
+  const close = () => {
+    overlay.setAttribute('data-state','closing');
+    toggle.setAttribute('aria-expanded','false');
+    let done = false;
+    const finish = () => { if (done) return; done = true; hideOverlay(); };
+    // Prefer transitionend on the sheet
+    menu.addEventListener('transitionend', (e) => { if (e.propertyName === 'transform') finish(); }, { once: true });
+    // Fallback timeout
+    setTimeout(finish, 350);
+  };
+
+  toggle.addEventListener('click', () => {
+    (overlay.hidden ? open : close)();
+  });
+  // Close on ESC
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  // Click backdrop or close button/link
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay || e.target.matches('[data-close], a')) close();
+  });
+})();
