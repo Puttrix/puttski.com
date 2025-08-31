@@ -17,7 +17,20 @@ const { title = 'Putte Arvfors — Web Analyst & Digital Troublemaker', descript
     <meta property="og:url" content="https://puttski.com/" />
     <link rel="canonical" href="https://puttski.com/" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%93%8A%3C/text%3E%3C/svg%3E" />
-
+    
+    <script>
+      (function(){
+        try {
+          const t = localStorage.getItem('theme');
+          const root = document.documentElement;
+          if (t === 'light' || t === 'dark') {
+            root.setAttribute('data-theme', t);
+          } else {
+            root.removeAttribute('data-theme'); // auto: follow system
+          }
+        } catch (e) {}
+      })();
+    </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -40,6 +53,7 @@ const { title = 'Putte Arvfors — Web Analyst & Digital Troublemaker', descript
           <a href="#skills">Skills</a>
           <a href="#certifications">Certifications</a>
           <a href="#contact">Contact</a>
+          <button id="theme-toggle" class="button ghost theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">🌓</button>
         </nav>
       </div>
     </header>
@@ -55,4 +69,3 @@ const { title = 'Putte Arvfors — Web Analyst & Digital Troublemaker', descript
     <script src="/script.js" defer></script>
   </body>
   </html>
-

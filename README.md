@@ -10,6 +10,7 @@ Matomo‑first analytics, SEO/AEO/GEO, experimentation, and privacy‑first engi
 - **Astro static site**: Modern, content‑first framework generating static HTML/CSS/JS.
 - **Structured data**: JSON‑LD for `WebSite`, `WebPage`, `Person`, credentials, and breadcrumbs.
 - **Optimized assets**: WebP logos with PNG fallbacks, lazy‑loading, and tight sizing.
+- **Dark mode**: Auto by system preference, plus a user toggle (Auto/Light/Dark).
 - **Nginx runtime**: Serves the built site with a custom 404 and long‑cache for assets.
 - **CI/CD ready**: GitHub Actions builds and pushes a Docker image to GHCR on `main`.
 - **Tunnel/proxy friendly**: Works well behind Cloudflare Tunnel or Nginx Proxy Manager.
@@ -21,6 +22,7 @@ Matomo‑first analytics, SEO/AEO/GEO, experimentation, and privacy‑first engi
 - Hero, About, Focus, Skills, Certifications, and Contact (see `src/pages/index.astro`).
 - Certifications show issuer logos and link to public credentials.
 - JSON‑LD added in `src/layouts/Base.astro` (including breadcrumbs).
+- Theme system: CSS variables in `src/styles.css` with `@media (prefers-color-scheme)` and manual override via `data-theme`.
 - Links:
   - LinkedIn: https://www.linkedin.com/in/putte/
   - GitHub: https://github.com/Puttrix
@@ -53,6 +55,14 @@ Preview the built site:
 ```bash
 npm run preview
 ```
+
+### Theme Toggle (Auto/Light/Dark)
+
+- The toggle lives in the header (🌓/☀️/🌙) and persists selection in `localStorage` (`theme` = `auto` | `light` | `dark`).
+- Auto removes any manual override and follows the system preference.
+- Implementation:
+  - Bootstrap in `src/layouts/Base.astro` to avoid FOUC.
+  - Runtime logic in `public/script.js` updates `document.documentElement[data-theme]`.
 
 ---
 
